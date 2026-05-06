@@ -42,9 +42,9 @@ Pide al usuario los siguientes datos:
 
 Si la empresa elegida usa foto de persona (Cleardent Personal, Cherry Health con foto, Fundación Cleardent):
 
-Pregunta: **¿Tienes una foto para adjuntar?**
-- **Sí** → pide que indique la ruta del archivo PNG en su equipo. **Independientemente del nombre original del archivo**, cópialo renombrándolo siempre como `foto-<nombre-apellido>.png` (minúsculas, guiones, sin tildes ni espacios). Guárdalo en `assets/<carpeta-empresa>/`.
-- **No** → usa la foto de la persona de referencia como placeholder y avisa al usuario.
+Pregunta: **¿Tienes foto de la persona? Arrástrala aquí o pega la ruta.**
+- **Sí** → el usuario arrastra el archivo o pega la ruta. Cópialo a `assets/<carpeta-empresa>/` renombrándolo como `foto-<nombre-apellido>.png`.
+- **No** → continúa sin foto y avisa al usuario que puede añadirla después.
 
 ---
 
