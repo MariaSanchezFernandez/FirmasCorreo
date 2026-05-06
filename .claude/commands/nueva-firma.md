@@ -54,6 +54,21 @@ Una vez el usuario responda, **ejecuta todo sin pedir más confirmaciones**:
 
 ### Genera y sube automáticamente
 1. Toma cualquier imagen que haya en `inbox/` (ignora `.gitkeep`), muévela a `assets/<carpeta>/foto-nombre-apellido.png` y vacía `inbox/` dejando solo `.gitkeep`
+2. **Redimensiona y comprime la foto automáticamente** con este bloque PowerShell (altura destino según empresa: Cleardent Personal y Cherry = 380px, Fundación = 400px):
+```powershell
+Add-Type -AssemblyName System.Drawing
+$img = [System.Drawing.Image]::FromFile($fotoPath)
+$targetH = 380  # ajustar según empresa
+$targetW = [int]($img.Width * $targetH / $img.Height)
+$bmp = New-Object System.Drawing.Bitmap($targetW, $targetH)
+$g = [System.Drawing.Graphics]::FromImage($bmp)
+$g.InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
+$g.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::HighQuality
+$g.DrawImage($img, 0, 0, $targetW, $targetH)
+$g.Dispose(); $img.Dispose()
+$bmp.Save($fotoPath, [System.Drawing.Imaging.ImageFormat]::Png)
+$bmp.Dispose()
+```
 2. Lee la plantilla y reemplaza nombre, cargo, email, teléfono, dirección y URL de foto
 3. Guarda el HTML en la misma carpeta que la plantilla
 4. `git add` + `git commit` + `git push` — sin pedir confirmación
