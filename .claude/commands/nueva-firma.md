@@ -1,98 +1,64 @@
 # Crear nueva firma de correo
 
-Eres un asistente que crea firmas de correo HTML para el repositorio FirmasCorreo. Sigue estos pasos en orden, preguntando al usuario interactivamente.
+Eres un asistente que crea firmas de correo HTML para el repositorio FirmasCorreo.
 
 ---
 
-## PASO 1 — Empresa
+## ÚNICO PASO DE RECOGIDA DE DATOS
 
-Pregunta: **¿Para qué empresa es la firma?**
-
-Opciones:
-1. Cleardent Personal (persona individual con foto)
-2. Cleardent Clínica (clínica sin foto de persona)
-3. Cherry Health
-4. Alynea
-5. Advance
-6. Fundación Cleardent
-
-Guarda la elección para los pasos siguientes.
-
-Si elige **Cherry Health**, pregunta a continuación: **¿La firma lleva foto de la persona?** (sí / no). Según la respuesta, usarás la plantilla con foto o sin foto.
+Haz **una sola pregunta** con todo lo que necesitas, en este formato exacto:
 
 ---
 
-## PASO 2 — Datos básicos
+**Necesito estos datos para crear la firma:**
 
-Pide al usuario los siguientes datos:
+1. **Empresa** — elige una:
+   - Cleardent Personal
+   - Cleardent Clínica
+   - Cherry Health (¿con o sin foto de persona?)
+   - Alynea
+   - Advance
+   - Fundación Cleardent
 
-- **Nombre completo** (ej: María García López)
-- **Cargo / puesto** (ej: Directora de Marketing)
-- **Email** (ej: maria.garcia@cleardent.es)
-- **Teléfono** — pide solo los dígitos (ej: 611 222 333). Siempre formatea como `+34 XXX XXX XXX` en el texto visible y como `tel:+34XXXXXXXXX` en el href, independientemente de si el usuario incluye o no el prefijo.
-- **Dirección** — usa directamente la dirección genérica según la empresa, sin preguntar. Solo pregunta si es una Clínica Cleardent (necesita dirección de la clínica específica).
-  - Cleardent Personal / Advance / Alynea / Cherry: `Avenida de la Innovación, Manzana 21A, Edificio Cleardent, Geolit, Mengíbar, Jaén 23620`
+2. **Nombre completo**
+3. **Cargo / puesto**
+4. **Email**
+5. **Teléfono** (solo dígitos, el +34 lo añado yo)
+6. **Foto** — adjúntala a la conversación *(la foto debe estar recortada sin espacios transparentes en los laterales)*
+
+*Si no tienes foto ahora, escribe "sin foto". La dirección la pongo automáticamente según la empresa, avísame solo si es diferente a la estándar.*
+
+---
+
+Una vez el usuario responda, **ejecuta todo sin pedir más confirmaciones**:
+
+### Procesa los datos
+- Teléfono: formatea siempre como `+34 XXX XXX XXX` en texto y `tel:+34XXXXXXXXX` en href
+- Nombre de archivo: `nombre-apellido.html` (minúsculas, sin tildes, con guiones)
+- Nombre de foto: `foto-nombre-apellido.png` (igual, ignorando el nombre original del archivo)
+- Dirección por defecto según empresa (no preguntes):
+  - Cleardent / Advance / Alynea / Cherry: `Avenida de la Innovación, Manzana 21A, Edificio Cleardent, Geolit, Mengíbar, Jaén 23620`
   - Fundación: `Avenida de la Innovación 2, Edificio Eureka, Planta 2 · Geolit, Mengíbar, Jaén · 23620`
-  - Clínica Cleardent: pregunta la dirección de esa clínica concreta.
+  - Clínica Cleardent: usa la dirección que haya indicado el usuario
 
----
-
-## PASO 3 — Foto personal (solo si aplica)
-
-**Cleardent Personal** siempre lleva foto — no preguntes, pídela directamente.
-**Cherry Health con foto** y **Fundación Cleardent** también llevan foto.
-
-Di al usuario: **"Adjunta la foto de la persona a la conversación."**
-- Si la adjunta → cópiala a `assets/<carpeta-empresa>/` renombrándola como `foto-<nombre-apellido>.png`.
-- Si dice que no tiene → continúa y avísale que puede añadirla después.
-
-⚠️ **Avisa siempre al usuario**: la foto debe estar recortada sin espacios transparentes en los laterales — la persona debe ocupar el ancho completo de la imagen para que quede pegada al borde de la firma.
-
----
-
-## PASO 4 — Generar el HTML
-
-Usa como plantilla el HTML de referencia de esa empresa:
-
+### Plantilla a usar
 | Empresa | Plantilla |
 |---|---|
 | Cleardent Personal | `cleardent/personal/juan-antonio-perez.html` |
 | Cleardent Clínica | `cleardent/clinicas/nerja.html` |
-| Cherry Health con foto | `cherry/amaia-lopez.html` |
-| Cherry Health sin foto | `cherry/jesus-rayo.html` |
+| Cherry con foto | `cherry/amaia-lopez.html` |
+| Cherry sin foto | `cherry/jesus-rayo.html` |
 | Alynea | `alynea/marisa-quesada.html` |
 | Advance | `cleardent/advance/advance.html` |
 | Fundación | `fundacion/estefania-urena.html` |
 
-Lee la plantilla y reemplaza:
-- Nombre completo
-- Cargo
-- Email (texto visible + href mailto:)
-- Teléfono (texto visible + href tel: sin espacios)
-- Dirección
-- URL de la foto (si aplica) → nueva ruta en `assets/`
-- Alt de la imagen con el nombre de la persona
+### Genera y sube automáticamente
+1. Copia la foto a `assets/<carpeta>/foto-nombre-apellido.png`
+2. Lee la plantilla y reemplaza nombre, cargo, email, teléfono, dirección y URL de foto
+3. Guarda el HTML en la misma carpeta que la plantilla
+4. `git add` + `git commit` + `git push` — sin pedir confirmación
 
-Guarda el nuevo archivo con nombre `<nombre-apellido>.html` (minúsculas, guiones) en la misma carpeta que la plantilla.
-
----
-
-## PASO 5 — Subir a GitHub
-
-```bash
-git add <ruta-html> <ruta-foto-si-existe>
-git commit -m "Add firma <Nombre Apellido> (<Empresa>)"
-git push origin main
-```
-
-Confirma al usuario que la firma está disponible en:
-`https://raw.githubusercontent.com/MariaSanchezFernandez/FirmasCorreo/main/<ruta-del-html>`
-
----
-
-## Reglas importantes
-
-- Todos los enlaces (email, teléfono, web) deben ser clicables con `<a href>` y `style="text-decoration:none;color:heredado"`
-- Respetar exactamente los colores y fuentes de la plantilla
-- No modificar la estructura de tablas ni los estilos MSO/Outlook
-- El nombre del archivo HTML y de la foto siempre en minúsculas con guiones, sin tildes ni caracteres especiales (ej: `ana-martinez-lopez.html`, `foto-ana-martinez-lopez.png`). Nunca uses el nombre original del archivo que proporcione el usuario — siempre renombra usando el nombre de la persona.
+### Reglas
+- Todos los enlaces (email, teléfono, web) con `<a href>` y `text-decoration:none`
+- No modificar estructura de tablas ni estilos MSO/Outlook
+- Nunca usar el nombre original de la foto — siempre renombrar con el nombre de la persona
