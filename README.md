@@ -1,30 +1,33 @@
-﻿# Firmas de Correo · Fundación Cleardent
+﻿# Firmas de Correo
 
-> Repositorio: https://github.com/Woodsearch/FirmasCorreo
+> Repositorio: https://github.com/MariaSanchezFernandez/FirmasCorreo
 
 Firmas HTML para clientes de correo (Gmail, Outlook, Apple Mail).
 
-## Estructura
-
-```
-FirmasCorree/
-├── index.html                        ← Firma activa
-└── assets/
-    ├── foto_EstefaniaUrena.png       ← Foto con fondo azul integrado
-    ├── preview.png                   ← Captura de referencia visual
-    └── logos/
-        └── logo_fundaciones.png      ← Logo Fundación Cleardent
-```
-
 ## Firmas disponibles
 
-| Persona | Archivo |
-|---|---|
-| Estefanía Ureña | `index.html` |
+| Persona | Empresa | Archivo |
+|---|---|---|
+| Estefanía Ureña | Fundación Cleardent | `index.html` |
+| Amaia López | The Cherry Health | `cherry-con-foto.html` |
+| Jesús Rayo | The Cherry Health | `cherry-sin-foto.html` |
+| — | Alynea | `alynea.html` |
+| — | Advance | `advance.html` |
+
+## Estructura de assets
+
+```
+assets/                     ← Fundación Cleardent
+assets-cherry-foto/         ← The Cherry Health (con foto)
+assets-cherry/              ← The Cherry Health (sin foto)
+assets-alynea/              ← Alynea
+assets-advance/             ← Advance
+logos/                      ← Logos compartidos
+```
 
 ## Cómo añadir la firma en Gmail
 
-1. Abre `index.html` en Chrome
+1. Abre el HTML en Chrome
 2. Selecciona todo: `Ctrl + A`
 3. Copia: `Ctrl + C`
 4. Gmail → ⚙️ Configuración → Ver toda la configuración → General → Firma
@@ -35,14 +38,14 @@ FirmasCorree/
 
 ## Notas técnicas
 
-- **Desktop** (≥ 500px): tabla de 612px con 3 columnas, compatible con Outlook.
-- **Móvil** (< 500px): layout apilado activado por media query. Outlook siempre muestra el desktop.
-- El fondo azul forma parte de `foto_EstefaniaUrena.png`, por lo que Gmail no puede eliminarlo.
+- **Desktop** (≥ 500px): tabla de 612px, compatible con Outlook.
+- **Móvil** (< 500px): layout apilado activado por media query.
+- Los fondos genéricos (`fondo_cherry_confoto.png`, `fondo_cherry_sinfoto.png`) se reutilizan entre personas — solo cambia la foto y los datos de texto.
 
 ## Añadir una nueva firma
 
-1. Duplica `index.html` con el nombre `index_NombrePersona.html`
-2. Añade la foto con fondo azul en `assets/` con el nombre `foto_NombrePersona.png`
-3. Actualiza los datos (nombre, cargo, email, teléfono) en el HTML
+1. Duplica el HTML más similar al perfil de la persona
+2. Añade la foto en la carpeta `assets-*` correspondiente con el nombre `foto_NombrePersona.png`
+3. Actualiza nombre, cargo, email, teléfono en el HTML
 4. Actualiza las URLs de las imágenes apuntando al nuevo archivo
-5. Añade la entrada en la tabla de firmas de este README
+5. Añade la entrada en la tabla de este README
