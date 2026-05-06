@@ -43,9 +43,8 @@ Pide al usuario los siguientes datos:
 Si la empresa elegida usa foto de persona (Cleardent Personal, Cherry Health con foto, Fundación Cleardent):
 
 Pregunta: **¿Tienes una foto para adjuntar?**
-- Si sí → pide que indique la ruta del archivo PNG en su equipo
-- Copia el archivo a `assets/<carpeta-empresa>/foto-<nombre-apellido>.png` (todo minúsculas, con guiones)
-- Si no → usa la foto de la persona de referencia como placeholder y avisa al usuario
+- Si sí → pide que indique la ruta del archivo PNG en su equipo. **Independientemente del nombre original del archivo**, cópialo renombrándolo siempre como `foto-<nombre-apellido>.png` (minúsculas, guiones, sin tildes ni espacios). Guárdalo en `assets/<carpeta-empresa>/`.
+- Si no → usa la foto de la persona de referencia como placeholder y avisa al usuario.
 
 ---
 
@@ -94,4 +93,4 @@ Confirma al usuario que la firma está disponible en:
 - Todos los enlaces (email, teléfono, web) deben ser clicables con `<a href>` y `style="text-decoration:none;color:heredado"`
 - Respetar exactamente los colores y fuentes de la plantilla
 - No modificar la estructura de tablas ni los estilos MSO/Outlook
-- El nombre del archivo HTML y de la foto siempre en minúsculas con guiones (ej: `ana-martinez-lopez.html`)
+- El nombre del archivo HTML y de la foto siempre en minúsculas con guiones, sin tildes ni caracteres especiales (ej: `ana-martinez-lopez.html`, `foto-ana-martinez-lopez.png`). Nunca uses el nombre original del archivo que proporcione el usuario — siempre renombra usando el nombre de la persona.
