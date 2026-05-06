@@ -24,7 +24,7 @@ Haz **una sola pregunta** con todo lo que necesitas, en este formato exacto:
 3. **Cargo / puesto**
 4. **Email**
 5. **Teléfono** (solo dígitos, el +34 lo añado yo)
-6. **Foto** — adjúntala a la conversación *(la foto debe estar recortada sin espacios transparentes en los laterales)*
+6. **Foto** — arrastra el archivo de foto al panel del explorador de archivos de VSCode (cualquier carpeta del proyecto) y dime el nombre del archivo. *(La foto debe estar recortada sin espacios transparentes en los laterales.)*
 
 *Si no tienes foto ahora, escribe "sin foto". La dirección la pongo automáticamente según la empresa, avísame solo si es diferente a la estándar.*
 
@@ -53,7 +53,7 @@ Una vez el usuario responda, **ejecuta todo sin pedir más confirmaciones**:
 | Fundación | `fundacion/estefania-urena.html` |
 
 ### Genera y sube automáticamente
-1. Copia la foto a `assets/<carpeta>/foto-nombre-apellido.png`
+1. Busca la foto en el proyecto con Glob usando el nombre de archivo que indicó el usuario, muévela a `assets/<carpeta>/foto-nombre-apellido.png` y elimina el archivo original de su ubicación temporal
 2. Lee la plantilla y reemplaza nombre, cargo, email, teléfono, dirección y URL de foto
 3. Guarda el HTML en la misma carpeta que la plantilla
 4. `git add` + `git commit` + `git push` — sin pedir confirmación
