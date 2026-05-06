@@ -30,21 +30,23 @@ Pide al usuario los siguientes datos:
 - **Cargo / puesto** (ej: Directora de Marketing)
 - **Email** (ej: maria.garcia@cleardent.es)
 - **Teléfono** — pide solo los dígitos (ej: 611 222 333). Siempre formatea como `+34 XXX XXX XXX` en el texto visible y como `tel:+34XXXXXXXXX` en el href, independientemente de si el usuario incluye o no el prefijo.
-- **Dirección** — muestra la dirección estándar de la empresa y pregunta si es diferente:
-  - Cleardent / Advance / Alynea: `Avenida de la Innovación, Manzana 21A, Edificio Cleardent, Geolit, Mengíbar, Jaén 23620`
-  - Cherry: `Avenida de la Innovación, Manzana 21A, Edificio Cleardent, Geolit, Mengíbar, Jaén 23620`
+- **Dirección** — usa directamente la dirección genérica según la empresa, sin preguntar. Solo pregunta si es una Clínica Cleardent (necesita dirección de la clínica específica).
+  - Cleardent Personal / Advance / Alynea / Cherry: `Avenida de la Innovación, Manzana 21A, Edificio Cleardent, Geolit, Mengíbar, Jaén 23620`
   - Fundación: `Avenida de la Innovación 2, Edificio Eureka, Planta 2 · Geolit, Mengíbar, Jaén · 23620`
-  - Clínicas Cleardent: preguntar dirección de la clínica específica
+  - Clínica Cleardent: pregunta la dirección de esa clínica concreta.
 
 ---
 
 ## PASO 3 — Foto personal (solo si aplica)
 
-Si la empresa elegida usa foto de persona (Cleardent Personal, Cherry Health con foto, Fundación Cleardent):
+**Cleardent Personal** siempre lleva foto — no preguntes, pídela directamente.
+**Cherry Health con foto** y **Fundación Cleardent** también llevan foto.
 
-Pregunta: **¿Tienes foto de la persona? Arrástrala aquí o pega la ruta.**
-- **Sí** → el usuario arrastra el archivo o pega la ruta. Cópialo a `assets/<carpeta-empresa>/` renombrándolo como `foto-<nombre-apellido>.png`.
-- **No** → continúa sin foto y avisa al usuario que puede añadirla después.
+Di al usuario: **"Adjunta la foto de la persona a la conversación."**
+- Si la adjunta → cópiala a `assets/<carpeta-empresa>/` renombrándola como `foto-<nombre-apellido>.png`.
+- Si dice que no tiene → continúa y avísale que puede añadirla después.
+
+⚠️ **Avisa siempre al usuario**: la foto debe estar recortada sin espacios transparentes en los laterales — la persona debe ocupar el ancho completo de la imagen para que quede pegada al borde de la firma.
 
 ---
 
