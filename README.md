@@ -11,8 +11,8 @@ Firmas HTML para clientes de correo (Gmail, Outlook, Apple Mail).
 | Estefanía Ureña | Fundación Cleardent | `index.html` |
 | Amaia López | The Cherry Health | `cherry-con-foto.html` |
 | Jesús Rayo | The Cherry Health | `cherry-sin-foto.html` |
-| — | Alynea | `alynea.html` |
-| — | Advance | `advance.html` |
+| Mª Luisa Quesada | Alynea | `alynea.html` |
+| Dirección Advance | Advance | `advance.html` |
 
 ## Estructura de assets
 
