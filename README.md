@@ -1,31 +1,61 @@
-﻿# Firmas de Correo
+# Firmas de Correo
 
 > Repositorio: https://github.com/MariaSanchezFernandez/FirmasCorreo
 
 Firmas HTML para clientes de correo (Gmail, Outlook, Apple Mail).
 
+---
+
 ## Firmas disponibles
 
 | Persona | Empresa | Archivo |
 |---|---|---|
-| Estefanía Ureña | Fundación Cleardent | `index.html` |
-| Amaia López | The Cherry Health | `cherry-con-foto.html` |
-| Jesús Rayo | The Cherry Health | `cherry-sin-foto.html` |
-| Mª Luisa Quesada | Alynea | `alynea.html` |
-| Dirección Advance | Advance | `advance.html` |
+| Juan Antonio Pérez | Cleardent Personal | `cleardent/personal/juan-antonio-perez.html` |
+| María Sánchez Fernández | Cleardent Personal | `cleardent/personal/maria-sanchez-fernandez.html` |
+| Dirección Nerja | Cleardent Clínica | `cleardent/clinicas/nerja.html` |
+| Dirección Advance | Cleardent Advance | `cleardent/advance/advance.html` |
+| Amaia López | Cherry Health | `cherry/amaia-lopez.html` |
+| Jesús Rayo | Cherry Health | `cherry/jesus-rayo.html` |
+| Mª Luisa Quesada | Alynea | `alynea/marisa-quesada.html` |
+| Estefanía Ureña | Fundación Cleardent | `fundacion/estefania-urena.html` |
 
-## Estructura de assets
+---
+
+## Estructura del repositorio
 
 ```
-assets/                     ← Fundación Cleardent
-assets-cherry-foto/         ← The Cherry Health (con foto)
-assets-cherry/              ← The Cherry Health (sin foto)
-assets-alynea/              ← Alynea
-assets-advance/             ← Advance
-logos/                      ← Logos compartidos
+cleardent/
+├── personal/          → firmas individuales con foto
+├── clinicas/          → firmas por clínica
+└── advance/           → firma Advance
+
+cherry/                → firmas Cherry Health (con y sin foto)
+alynea/                → firmas Alynea
+fundacion/             → firmas Fundación Cleardent
+
+assets/
+├── cleardent/
+│   ├── personal/      → fondos y fotos Cleardent Personal
+│   ├── nerja/         → fondo Cleardent Clínica Nerja
+│   └── advance/       → logo y decorativos Advance
+├── cherry/            → fondos y fotos Cherry Health
+├── alynea/            → fondo e iconos Alynea
+└── fundacion/         → logo, fondo y fotos Fundación
+
+inbox/                 → carpeta para subir fotos nuevas (se vacía automáticamente)
 ```
 
-## Cómo añadir la firma en Gmail
+---
+
+## Cómo añadir una nueva firma
+
+Usa el comando `/nueva-firma` desde Claude Code. Te pedirá los datos de una sola vez y creará el archivo, renombrará la foto y subirá todo a GitHub automáticamente.
+
+Para la foto: arrástrala a la carpeta **`inbox/`** antes de ejecutar el comando. La foto debe estar **recortada sin espacios transparentes en los laterales**.
+
+---
+
+## Cómo instalar la firma en Gmail
 
 1. Abre el HTML en Chrome
 2. Selecciona todo: `Ctrl + A`
@@ -34,18 +64,13 @@ logos/                      ← Logos compartidos
 5. Crea una nueva firma y pega: `Ctrl + V`
 6. Guarda los cambios
 
-> Las imágenes se cargan desde GitHub (raw.githubusercontent.com), por lo que funcionan directamente en Gmail sin servidor propio.
+> Las imágenes se cargan desde GitHub (`raw.githubusercontent.com`), funcionan directamente sin servidor propio.
+
+---
 
 ## Notas técnicas
 
-- **Desktop** (≥ 500px): tabla de 612px, compatible con Outlook.
-- **Móvil** (< 500px): layout apilado activado por media query.
-- Los fondos genéricos (`fondo_cherry_confoto.png`, `fondo_cherry_sinfoto.png`) se reutilizan entre personas — solo cambia la foto y los datos de texto.
-
-## Añadir una nueva firma
-
-1. Duplica el HTML más similar al perfil de la persona
-2. Añade la foto en la carpeta `assets-*` correspondiente con el nombre `foto_NombrePersona.png`
-3. Actualiza nombre, cargo, email, teléfono en el HTML
-4. Actualiza las URLs de las imágenes apuntando al nuevo archivo
-5. Añade la entrada en la tabla de este README
+- Tabla de **612px**, compatible con Outlook (VML), Gmail y Apple Mail
+- Imágenes optimizadas a **2× el tamaño de visualización** para pantallas retina
+- Todos los enlaces (email, teléfono, web) son clicables
+- Colores y fuentes específicos por empresa, no mezclar entre plantillas
