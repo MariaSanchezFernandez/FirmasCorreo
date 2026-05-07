@@ -8,16 +8,14 @@ Firmas HTML para clientes de correo (Gmail, Outlook, Apple Mail).
 
 ## Firmas disponibles
 
-| Persona | Empresa | Archivo |
-|---|---|---|
-| Juan Antonio Pérez | Cleardent Personal | `cleardent/personal/juan-antonio-perez.html` |
-| María Sánchez Fernández | Cleardent Personal | `cleardent/personal/maria-sanchez-fernandez.html` |
-| Dirección Nerja | Cleardent Clínica | `cleardent/clinicas/nerja.html` |
-| Dirección Advance | Cleardent Advance | `cleardent/advance/advance.html` |
-| Amaia López | Cherry Health | `cherry/amaia-lopez.html` |
-| Jesús Rayo | Cherry Health | `cherry/jesus-rayo.html` |
-| Mª Luisa Quesada | Alynea | `alynea/marisa-quesada.html` |
-| Estefanía Ureña | Fundación Cleardent | `fundacion/estefania-urena.html` |
+| Empresa | Carpeta |
+|---|---|
+| Cleardent Personal | `cleardent/personal/` |
+| Cleardent Clínicas | `cleardent/clinicas/` |
+| Cleardent Advance | `cleardent/advance/` |
+| Cherry Health | `cherry/` |
+| Alynea | `alynea/` |
+| Fundación Cleardent | `fundacion/` |
 
 ---
 
