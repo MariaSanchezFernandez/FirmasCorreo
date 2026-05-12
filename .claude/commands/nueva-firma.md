@@ -54,11 +54,11 @@ Una vez el usuario responda, **ejecuta todo sin pedir más confirmaciones**:
 
 ### Genera y sube automáticamente
 1. Toma cualquier imagen que haya en `inbox/` (ignora `.gitkeep`), muévela a `assets/<carpeta>/foto-nombre-apellido.png` y vacía `inbox/` dejando solo `.gitkeep`
-2. **Redimensiona y comprime la foto automáticamente** con este bloque PowerShell (altura destino según empresa: Cleardent Personal y Cherry = 380px, Fundación = 400px):
+2. **Redimensiona y comprime la foto automáticamente** con este bloque PowerShell (altura destino según empresa: Cleardent Personal = 400px, Cherry = 380px, Fundación = 400px):
 ```powershell
 Add-Type -AssemblyName System.Drawing
 $img = [System.Drawing.Image]::FromFile($fotoPath)
-$targetH = 380  # ajustar según empresa
+$targetH = 400  # Cleardent Personal y Fundación = 400; Cherry = 380
 $targetW = [int]($img.Width * $targetH / $img.Height)
 $bmp = New-Object System.Drawing.Bitmap($targetW, $targetH)
 $g = [System.Drawing.Graphics]::FromImage($bmp)
