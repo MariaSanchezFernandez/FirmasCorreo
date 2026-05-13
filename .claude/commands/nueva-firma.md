@@ -24,7 +24,7 @@ Haz **una sola pregunta** con todo lo que necesitas, en este formato exacto:
 3. **Cargo / puesto**
 4. **Email**
 5. **Teléfono** (solo dígitos, el +34 lo añado yo)
-6. **Foto** — arrastra el archivo a la carpeta **`inbox/`** del proyecto. *(La foto debe estar recortada sin espacios transparentes en los laterales.)*
+6. **Foto** — arrastra el archivo a la carpeta **`inbox/`** del proyecto. *(Cualquier formato; se redimensionará automáticamente.)*
 
 *Si no tienes foto ahora, escribe "sin foto". La dirección la pongo automáticamente según la empresa, avísame solo si es diferente a la estándar.*
 
@@ -37,7 +37,7 @@ Una vez el usuario responda, **ejecuta todo sin pedir más confirmaciones**:
 - Nombre de archivo: `nombre-apellido.html` (minúsculas, sin tildes, con guiones)
 - Nombre de foto: `foto-nombre-apellido.png` (igual, ignorando el nombre original del archivo)
 - Dirección por defecto según empresa (no preguntes):
-  - Cleardent / Advance / Alynea / Cherry: `Avenida de la Innovación, Manzana 21A, Edificio Cleardent, Geolit, Mengíbar, Jaén 23620`
+  - Cleardent / Advance / Alynea / Cherry: `Avenida de la Innovación, Manzana 21A, Edificio Cleardent, Geolit, Mengíbar, Jaén`
   - Fundación: `Avenida de la Innovación 2, Edificio Eureka, Planta 2 · Geolit, Mengíbar, Jaén · 23620`
   - Clínica Cleardent: usa la dirección que haya indicado el usuario
 
@@ -54,26 +54,31 @@ Una vez el usuario responda, **ejecuta todo sin pedir más confirmaciones**:
 
 ### Genera y sube automáticamente
 1. Toma cualquier imagen que haya en `inbox/` (ignora `.gitkeep`), muévela a `assets/<carpeta>/foto-nombre-apellido.png` y vacía `inbox/` dejando solo `.gitkeep`
-2. **Redimensiona y comprime la foto automáticamente** con este bloque PowerShell.
-   - Cleardent Personal: redimensionar por **ancho** a 300px (2× de 150px de visualización), alto proporcional (height:auto).
+2. **Redimensiona la foto automáticamente** con este bloque PowerShell (sin recortar — la imagen entera se escala para caber en el tamaño objetivo; el espacio sobrante queda transparente).
+   - Cleardent Personal: fit dentro de **360×400px**.
    - Cherry: redimensionar por **alto** a 380px, ancho proporcional.
    - Fundación: redimensionar por **alto** a 400px, ancho proporcional.
 ```powershell
 Add-Type -AssemblyName System.Drawing
 $img = [System.Drawing.Image]::FromFile($fotoPath)
-# Cleardent Personal: ancho fijo 300px (2x de 150px de visualización)
-$targetW = 300
-$targetH = [int]($img.Height * $targetW / $img.Width)
-# Cherry: $targetH = 380; $targetW = [int]($img.Width * $targetH / $img.Height)
-# Fundación: $targetH = 400; $targetW = [int]($img.Width * $targetH / $img.Height)
-$bmp = New-Object System.Drawing.Bitmap($targetW, $targetH)
-$g = [System.Drawing.Graphics]::FromImage($bmp)
+
+# Cleardent Personal: fit 360×400px sin recorte
+$targetW = 360; $targetH = 400
+$scale = [Math]::Min($targetW / $img.Width, $targetH / $img.Height)
+$resW = [int]($img.Width * $scale); $resH = [int]($img.Height * $scale)
+$canvas = New-Object System.Drawing.Bitmap($targetW, $targetH)
+$g = [System.Drawing.Graphics]::FromImage($canvas)
+$g.Clear([System.Drawing.Color]::Transparent)
 $g.InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
 $g.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::HighQuality
-$g.DrawImage($img, 0, 0, $targetW, $targetH)
+$offsetX = [int](($targetW - $resW) / 2); $offsetY = [int](($targetH - $resH) / 2)
+$g.DrawImage($img, $offsetX, $offsetY, $resW, $resH)
 $g.Dispose(); $img.Dispose()
-$bmp.Save($fotoPath, [System.Drawing.Imaging.ImageFormat]::Png)
-$bmp.Dispose()
+$canvas.Save($fotoPath, [System.Drawing.Imaging.ImageFormat]::Png)
+$canvas.Dispose()
+
+# Cherry: $targetH = 380; $targetW = [int]($img.Width * $targetH / $img.Height)
+# Fundación: $targetH = 400; $targetW = [int]($img.Width * $targetH / $img.Height)
 ```
 2. Lee la plantilla y reemplaza nombre, cargo, email, teléfono, dirección y URL de foto
 3. Guarda el HTML en la misma carpeta que la plantilla
