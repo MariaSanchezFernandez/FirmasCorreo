@@ -33,9 +33,22 @@
   <![endif]-->
 </head>
 <body style="margin: 0; padding: 0">
+  <div style="padding:20px;text-align:center;font-family:Arial,sans-serif;">
+    <button onclick="copiarFirma()" style="background:#007bff;color:#fff;border:none;padding:12px 28px;font-size:15px;border-radius:6px;cursor:pointer;">Copiar firma</button>
+    <span id="msg" style="display:none;margin-left:14px;color:#28a745;font-size:14px;font-weight:bold;">Copiada — pega en Gmail</span>
+  </div>
+  <script>
+    async function copiarFirma() {
+      const html = document.getElementById('firma').outerHTML;
+      await navigator.clipboard.write([new ClipboardItem({'text/html': new Blob([html], {type:'text/html'})})]);
+      const msg = document.getElementById('msg');
+      msg.style.display = 'inline';
+      setTimeout(() => msg.style.display = 'none', 3000);
+    }
+  </script>
   <!-- DESKTOP (visible siempre · Outlook no procesa media queries) -->
   <center class="sig-desktop" style="width:100%;table-layout:fixed;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
-    <table cellpadding="0" cellspacing="0" border="0" role="presentation" bgcolor="#ffffff" width="612" height="200"
+    <table id="firma" cellpadding="0" cellspacing="0" border="0" role="presentation" bgcolor="#ffffff" width="612" height="200"
       style="width:612px;min-width:612px;height:200px;background-color:#ffffff;border-spacing:0;font-family:Verdana, Tahoma, sans-serif">
       <tr>
         <!-- Col 1 · Fondo azul + foto persona -->

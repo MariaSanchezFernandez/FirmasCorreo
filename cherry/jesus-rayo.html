@@ -48,6 +48,19 @@
   <![endif]-->
 </head>
 <body style="margin: 0; padding: 0">
+  <div style="padding:20px;text-align:center;font-family:Arial,sans-serif;">
+    <button onclick="copiarFirma()" style="background:#007bff;color:#fff;border:none;padding:12px 28px;font-size:15px;border-radius:6px;cursor:pointer;">Copiar firma</button>
+    <span id="msg" style="display:none;margin-left:14px;color:#28a745;font-size:14px;font-weight:bold;">Copiada — pega en Gmail</span>
+  </div>
+  <script>
+    async function copiarFirma() {
+      const html = document.getElementById('firma').outerHTML;
+      await navigator.clipboard.write([new ClipboardItem({'text/html': new Blob([html], {type:'text/html'})})]);
+      const msg = document.getElementById('msg');
+      msg.style.display = 'inline';
+      setTimeout(() => msg.style.display = 'none', 3000);
+    }
+  </script>
   <div style="font-size:0px;line-height:1px;mso-line-height-rule:exactly;display:none;max-width:0px;max-height:0px;opacity:0;overflow:hidden;mso-hide:all;"></div>
   <center lang="und" dir="auto" style="width:100%;table-layout:fixed;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
     <!--[if gte mso 9]>
@@ -62,7 +75,7 @@
           <v:textbox inset="0,0,0,0">
             <div><div style="font-size: 0;">
     <![endif]-->
-    <table background="https://raw.githubusercontent.com/MariaSanchezFernandez/FirmasCorreo/main/assets/cherry/fondo-sin-foto.png"
+    <table id="firma" background="https://raw.githubusercontent.com/MariaSanchezFernandez/FirmasCorreo/main/assets/cherry/fondo-sin-foto.png"
       cellpadding="0" cellspacing="0" border="0" role="presentation" width="612" height="180"
       style="background:url('https://raw.githubusercontent.com/MariaSanchezFernandez/FirmasCorreo/main/assets/cherry/fondo-sin-foto.png') 50% / 100% no-repeat;width:612px;height:180px;border-spacing:0;font-family:Geist, sans-serif;min-width:612px">
       <tr>
