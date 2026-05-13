@@ -56,63 +56,85 @@
   <![endif]-->
 </head>
 <body style="Margin:0;padding:0;">
+  <div style="padding:20px;text-align:center;font-family:Arial,sans-serif;">
+    <button onclick="copiarFirma()" style="background:#007bff;color:#fff;border:none;padding:12px 28px;font-size:15px;border-radius:6px;cursor:pointer;">Copiar firma</button>
+    <span id="msg" style="display:none;margin-left:14px;color:#28a745;font-size:14px;font-weight:bold;">Copiada — pega en Gmail</span>
+  </div>
+  <script>
+    async function copiarFirma() {
+      const html = document.getElementById('firma').outerHTML;
+      await navigator.clipboard.write([new ClipboardItem({'text/html': new Blob([html], {type:'text/html'})})]);
+      const msg = document.getElementById('msg');
+      msg.style.display = 'inline';
+      setTimeout(() => msg.style.display = 'none', 3000);
+    }
+  </script>
   <div style="font-size:0px;line-height:1px;mso-line-height-rule:exactly;display:none;max-width:0px;max-height:0px;opacity:0;overflow:hidden;mso-hide:all;"></div>
   <center lang="en" dir="ltr" style="width:100%;table-layout:fixed;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
-    <!--[if gte mso 9]> <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="430" style="width:430px"> <tr> <td> <v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" alt="background-image" stroke="false" style="border: 0; display: inline-block; width: 322.50pt; height: 105.75pt" src="https://raw.githubusercontent.com/MariaSanchezFernandez/FirmasCorreo/main/assets/cleardent/personal/fondo.png"/> <v:rect alt="background-image-rectangle" fill="true" stroke="false" style="border: 0; display: inline-block; position: absolute; width: 322.50pt; height:105.75pt"> <v:fill opacity="0%" color="#FFFFFF"/> <v:textbox inset="0,0,0,0"> <div> <div style="font-size: 0;"> <![endif]-->
-    <table background="https://raw.githubusercontent.com/MariaSanchezFernandez/FirmasCorreo/main/assets/cleardent/personal/fondo.png"
-      cellpadding="0" cellspacing="0" border="0" role="presentation" width="430"
-      style="background:url('https://raw.githubusercontent.com/MariaSanchezFernandez/FirmasCorreo/main/assets/cleardent/personal/fondo.png') center / cover no-repeat;width:430px;height:141px;border-spacing:0;font-family:Verdana, Tahoma;min-width:430px">
+    <!--[if gte mso 9]> <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="550" style="width:550px"> <tr> <td> <v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" alt="background-image" stroke="false" style="border: 0; display: inline-block; width: 412.50pt; height: 135.00pt" src="https://raw.githubusercontent.com/MariaSanchezFernandez/FirmasCorreo/main/assets/cleardent/personal/fondo.png"/> <v:rect alt="background-image-rectangle" fill="true" stroke="false" style="border: 0; display: inline-block; position: absolute; width: 412.50pt; height:135.00pt"> <v:fill opacity="0%" color="#FFFFFF"/> <v:textbox inset="0,0,0,0"> <div> <div style="font-size: 0;"> <![endif]-->
+    <table id="firma" background="https://raw.githubusercontent.com/MariaSanchezFernandez/FirmasCorreo/main/assets/cleardent/personal/fondo.png"
+      cellpadding="0" cellspacing="0" border="0" role="presentation" width="550"
+      style="background:url('https://raw.githubusercontent.com/MariaSanchezFernandez/FirmasCorreo/main/assets/cleardent/personal/fondo.png') left top / 550px 180px no-repeat;width:550px;height:180px;border-spacing:0;font-family:Verdana, Tahoma;min-width:550px">
       <tr>
         <!--[if mso]><td valign="bottom"><table role="presentation" border="0" cellspacing="0" cellpadding="0"><tr><![endif]-->
-        <td valign="bottom" width="115" style="width:115px;height:141px;overflow:hidden;vertical-align:bottom;padding:0;">
+        <td valign="bottom" width="147" style="width:147px;height:180px;overflow:hidden;vertical-align:bottom;padding:0;">
           <img src="https://raw.githubusercontent.com/MariaSanchezFernandez/FirmasCorreo/main/assets/cleardent/personal/foto-juan-antonio-perez.png"
-            alt="Juan Antonio Pérez" width="115"
-            style="border:none;display:block;width:115px;height:auto;" />
+            alt="Juan Antonio Pérez" width="147"
+            style="border:none;display:block;width:147px;height:auto;" />
         </td>
         <!--[if mso]></tr></table></td><![endif]-->
         <!--[if mso]><td valign="top"><table role="presentation" border="0" cellspacing="0" cellpadding="0"><tr><![endif]-->
-        <td valign="top" style="vertical-align:top;padding-top:15px;padding-left:8px;">
+        <td valign="top" style="vertical-align:top;padding-left:22px;">
           <table cellpadding="0" cellspacing="0" border="0" role="presentation" width="100%" style="width:100%;border-spacing:0">
+            <tr>
+              <td height="20" style="height:20px;font-size:0;line-height:0;">&nbsp;</td>
+            </tr>
             <tr>
               <td align="left" valign="top" style="vertical-align:top;">
                 <p class=" color-007bff"
-                  style="font-family:Arial, Tahoma;font-size:15px;font-weight:700;color:#007bff;margin:0;margin-top:-1.96px;padding:0;width:100%;line-height:13.50px;mso-line-height-rule:exactly">
+                  style="font-family:Arial, Tahoma;font-size:19px;font-weight:700;color:#007bff;margin:0;padding:0;width:100%;line-height:17px;mso-line-height-rule:exactly">
                   JUAN ANTONIO PÉREZ</p>
               </td>
             </tr>
             <tr>
-              <td align="left" valign="top" height="21" style="padding-top:1.87px;height:21px;vertical-align:top;">
+              <td align="left" valign="top" style="padding-top:3px;vertical-align:top;">
                 <p class=" color-7cbeff"
-                  style="font-size:8px;font-weight:400;color:#7cbeff;margin:0;padding:0;width:100%;line-height:11px;mso-line-height-rule:exactly">
+                  style="font-size:10px;font-weight:400;color:#7cbeff;margin:0;padding:0;width:100%;line-height:14px;mso-line-height-rule:exactly">
                   Diseñador Gráfico</p>
               </td>
             </tr>
             <tr>
-              <td align="left" valign="top" height="15" style="padding-top:6px;height:15px;vertical-align:top;">
+              <td height="23" style="height:23px;font-size:0;line-height:0;">&nbsp;</td>
+            </tr>
+            <tr>
+              <td align="left" valign="top" style="padding-top:5px;vertical-align:top;">
                 <p class=" color-007bff"
-                  style="font-size:8px;font-weight:400;color:#007bff;margin:0;padding:0;width:100%;line-height:13px;mso-line-height-rule:exactly">
+                  style="font-size:10px;font-weight:400;color:#007bff;margin:0;padding:0;width:100%;line-height:17px;mso-line-height-rule:exactly">
                   <a href="mailto:jantonio.perez@cleardent.es" style="color:#007bff;text-decoration:none;">jantonio.perez@cleardent.es</a></p>
               </td>
             </tr>
             <tr>
-              <td align="left" valign="top" height="20" style="padding-top:1.92px;height:20px;vertical-align:top;">
+              <td align="left" valign="top" style="padding-top:2px;vertical-align:top;">
                 <p class=" color-007bff"
-                  style="font-size:8px;font-weight:400;color:#007bff;margin:0;padding:0;width:100%;line-height:8.33px;mso-line-height-rule:exactly">
+                  style="font-size:10px;font-weight:400;color:#007bff;margin:0;padding:0;width:100%;line-height:11px;mso-line-height-rule:exactly">
                   <a href="tel:+34623465975" style="color:#007bff;text-decoration:none;">+34 623 465 975</a></p>
               </td>
             </tr>
             <tr>
-              <td align="left" style="padding-top:10px;">
+              <td height="26" style="height:26px;font-size:0;line-height:0;">&nbsp;</td>
+            </tr>
+            <tr>
+              <td align="left" style="padding-top:0;">
                 <table cellpadding="0" cellspacing="0" border="0" role="presentation" style="margin:0;border-spacing:0">
                   <tr>
-                    <td valign="top" width="192" style="padding-right:7px;width:192px;vertical-align:top">
+                    <td valign="top" width="245" style="padding-right:7px;width:245px;vertical-align:top">
                       <p class=" color-007bff"
-                        style="font-size:8px;font-weight:400;text-align:left;color:#007bff;margin:0;padding:0;width:192px">
-                        Avenida de la Innovación, Manzana 21A, Edificio Cleardent, Geolit, Mengíbar, Jaén 23620</p>
+                        style="font-size:10px;font-weight:400;text-align:left;color:#007bff;margin:0;padding:0;width:245px">
+                        Avenida de la Innovación, Manzana 21A, Edificio Cleardent, Geolit, Mengíbar, Jaén</p>
                     </td>
-                    <td valign="top" width="78" style="padding-top:14.64px;padding-left:8px;width:78px;vertical-align:top;">
+                    <td valign="top" width="100" style="padding-top:19px;padding-left:10px;width:100px;vertical-align:top;">
                       <p class=" color-007bff"
-                        style="font-size:8px;font-weight:400;color:#007bff;margin:0;padding:0;width:78px;line-height:8.52px;mso-line-height-rule:exactly">
+                        style="font-size:10px;font-weight:400;color:#007bff;margin:0;padding:0;width:100px;line-height:11px;mso-line-height-rule:exactly">
                         <a href="https://www.cleardent.es" style="color:#007bff;text-decoration:none;">www.cleardent.es</a></p>
                     </td>
                   </tr>
