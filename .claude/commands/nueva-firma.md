@@ -77,21 +77,21 @@ $canvas.Save($fotoPath, [System.Drawing.Imaging.ImageFormat]::Png)
 $canvas.Dispose()
 ```
 
-#### Cherry con foto — cover 344×342px, recorte centrado, anclado arriba
-Canvas fijo que ocupa exactamente la columna de foto (172px × 171px a 2x). La columna tiene 180px de alto con 9px de padding-top, así que la imagen se muestra a 171px — usar 344×342 evita que la firma se estire. La escala usa `Max` para cubrir (nunca deja huecos); el exceso se recorta centrado en X y desde arriba en Y (la cara siempre aparece).
+#### Cherry con foto — fit 344×342px, centrado
+Canvas fijo de 172px × 171px a 2x (la columna tiene 180px con 9px de padding-top). Escala con `Min` para que la foto entre completa sin recortar nada; el fondo del canvas es `#fdfdfd` (igual que la columna). La imagen queda centrada horizontal y verticalmente.
 ```powershell
 Add-Type -AssemblyName System.Drawing
 $img = [System.Drawing.Image]::FromFile($fotoPath)
 $targetW = 344; $targetH = 342
-$scale = [Math]::Max($targetW / $img.Width, $targetH / $img.Height)
+$scale = [Math]::Min($targetW / $img.Width, $targetH / $img.Height)
 $resW = [int]($img.Width * $scale); $resH = [int]($img.Height * $scale)
 $canvas = New-Object System.Drawing.Bitmap($targetW, $targetH)
 $g = [System.Drawing.Graphics]::FromImage($canvas)
-$g.Clear([System.Drawing.Color]::Transparent)
+$g.Clear([System.Drawing.Color]::FromArgb(255, 253, 253, 253))
 $g.InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
 $g.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::HighQuality
-$offsetX = -[int](($resW - $targetW) / 2)
-$offsetY = 0
+$offsetX = [int](($targetW - $resW) / 2)
+$offsetY = [int](($targetH - $resH) / 2)
 $g.DrawImage($img, $offsetX, $offsetY, $resW, $resH)
 $g.Dispose(); $img.Dispose()
 $canvas.Save($fotoPath, [System.Drawing.Imaging.ImageFormat]::Png)
