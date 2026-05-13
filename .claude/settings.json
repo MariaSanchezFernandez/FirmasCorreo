@@ -1,14 +1,16 @@
 {
-  "allowedTools": [
-    "PowerShell(Move-Item *)",
-    "PowerShell(Copy-Item *)",
-    "PowerShell(Remove-Item *)",
-    "PowerShell(New-Item *)",
-    "PowerShell(Get-ChildItem *)",
-    "Bash(git add *)",
-    "Bash(git commit *)",
-    "Bash(git push *)",
-    "Bash(git mv *)",
-    "Bash(git rm *)"
-  ]
+  "permissions": {
+    "allow": [
+      "PowerShell(*)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git mv *)",
+      "Bash(git rm *)",
+      "Bash(git status*)",
+      "Bash(git log*)",
+      "Write",
+      "Edit"
+    ]
+  }
 }

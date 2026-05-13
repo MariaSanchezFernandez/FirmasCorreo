@@ -59,9 +59,22 @@
   <![endif]-->
 </head>
 <body style="Margin:0;padding:0;">
+  <div style="padding:20px;text-align:center;font-family:Arial,sans-serif;">
+    <button onclick="copiarFirma()" style="background:#007bff;color:#fff;border:none;padding:12px 28px;font-size:15px;border-radius:6px;cursor:pointer;">Copiar firma</button>
+    <span id="msg" style="display:none;margin-left:14px;color:#28a745;font-size:14px;font-weight:bold;">Copiada — pega en Gmail</span>
+  </div>
+  <script>
+    async function copiarFirma() {
+      const html = document.getElementById('firma').outerHTML;
+      await navigator.clipboard.write([new ClipboardItem({'text/html': new Blob([html], {type:'text/html'})})]);
+      const msg = document.getElementById('msg');
+      msg.style.display = 'inline';
+      setTimeout(() => msg.style.display = 'none', 3000);
+    }
+  </script>
   <div style="font-size:0px;line-height:1px;mso-line-height-rule:exactly;display:none;max-width:0px;max-height:0px;opacity:0;overflow:hidden;mso-hide:all;"></div>
   <center lang="en" dir="ltr" style="width:100%;table-layout:fixed;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
-    <table class=" bg-fffffe" cellpadding="0" cellspacing="0" border="0" role="presentation" bgcolor="white" width="454"
+    <table id="firma" class=" bg-fffffe" cellpadding="0" cellspacing="0" border="0" role="presentation" bgcolor="white" width="454"
       style="background-color:white;width:454px;border-spacing:0;font-family:Verdana, Tahoma;min-width:454px">
       <tr>
         <td valign="top" width="100%" style="padding:23px 31px 30px 31px;width:100%;vertical-align:top">
